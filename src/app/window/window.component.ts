@@ -311,7 +311,7 @@ export class WindowComponent implements OnInit, AfterViewInit {
     // })
     //#endregion
 
-    //#region Lights and projects(Lights and Shadows)
+    //#region Lights
 
     var ambientlight = Lights.ambientlight();
     // this.scene.add(ambientlight);
@@ -908,22 +908,19 @@ export class WindowComponent implements OnInit, AfterViewInit {
     })
     //#endregion
 
-    //#region Changing color after pressing buttons Randomly
+    //#region Alt + S and ontrol + C for draw window & colors change 
 
     window.addEventListener('keydown', event => {
       var keyCode = event.which;
 
       //You can add alt key also..it is fully customizeable
       // Use keycode to avoid the small key and caps key error....
-      if (event.ctrlKey && keyCode == 67) {     //event.ctlrKey is for Control option and the place the keyEvent...
-        console.log("C is pressed", Math.random() * 0xffffff); // Press Ctrl + c for Random changing color of the object
-        // cube.material.color.setHex(Math.random() * 0xffffff);
-
-        // tube1.material.color.setHex(Math.random() * 0xffffff);
-      }
+    
       //Altkey + s to add the screw into the scene
       if (event.altKey && keyCode == 83) {
         console.log("Adding Screw");
+        var light = new THREE.AmbientLight(White, 0.7);
+        this.scene.add(light);
         this.scene.remove(gridhelper)
 
         let w1 = WindowLeft.createPart();
@@ -1028,7 +1025,16 @@ export class WindowComponent implements OnInit, AfterViewInit {
         screwright5.position.set(6, 4, 0.5)
 
       }
+      if (event.ctrlKey && keyCode == 67) {     //event.ctlrKey is for Control option and the place the keyEvent...
+        console.log("C is pressed", Math.random() * 0xffffff); // Press Ctrl + c for Random changing color of the object
+        // cube.material.color.setHex(Math.random() * 0xffffff);
 
+        // tube1.material.color.setHex(Math.random() * 0xffffff);
+        // const obj = this.scene.children ;
+        // obj.forEach(obj => {
+        //  alert("Colors changes")
+        // })
+      }
     })
 
     //#endregion
